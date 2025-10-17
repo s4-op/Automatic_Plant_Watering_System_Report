@@ -1,0 +1,31 @@
+
+const int soilMoisturePin = A0;
+const int ledDryPin = 8;        
+const int ledWetPin = 7;        
+
+void setup() {
+  pinMode(ledDryPin, OUTPUT);
+  pinMode(ledWetPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int soilValue = analogRead(soilMoisturePin);
+  Serial.print("Soil Moisture Value: ");
+  Serial.println(soilValue);
+
+  
+  int threshold = 500;
+
+  if (soilValue < threshold) {
+  
+    digitalWrite(ledDryPin, HIGH);
+    digitalWrite(ledWetPin, LOW);
+  } else {
+   
+    digitalWrite(ledDryPin, LOW);
+    digitalWrite(ledWetPin, HIGH);
+  }
+
+  delay(1000);
+}
